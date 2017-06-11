@@ -97,9 +97,7 @@ if ($_GET[wrongpw])
 		{
 			$all = unserialize($all);
 			foreach ($all as $cat)
-			{
 				echo "<a href=display_cat.php?cat=$cat><b>$cat</b></a><br>";
-			}
 		}
 	}
 ?>

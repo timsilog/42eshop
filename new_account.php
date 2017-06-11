@@ -1,8 +1,12 @@
-<!DOCTYPE html>
-
 <html>
 	<head><h1>Create A New Account</h1></head>
 	<body>
+	<?php
+	if ($_GET[err] == 'usertaken')
+		echo "That username is already taken!";
+	if ($_GET[create])
+		echo 'Successfully created user: '.$_GET[user];
+	?>
 	<form method="post" action="create.php">
 		Username: <input type="text" name="login" value="" />
 		<br />

@@ -7,22 +7,16 @@
 <body>
 	<div class="box">
 	<h3>Add New Item</h3>
-<!--DISPLAY ERROR MSGS HERE
-////
--->
-	<form method="post" action="new_item.php">
-		Name: <input type="text" name="login" value=""><br>
-		Category: <input list="categories" name="category">
-		<datalist id="categories">
-		<?php
-		foreach ($cats as $cat)
-			echo '<option value="'.$cat.'">';
-		?>
-		</datalist><br>
-		Price: $<input type="number" name="price" value=""><br>
-		Quantity: <input type="number" name="qty" value=""><br>
-		Image Source: <input type="text" name="img" value=""><br>
-		<input type="submit" name="submit" value="Submit"><br>
+<?php
+if ($_GET[err] == 'noname')
+	echo "Missing name!";
+?>
+	<form method="post" action=<?php echo '"new_item.php?cat='.$_GET[cat].'"'?>>
+	Name: <input type="text" name="name" value=""><br>
+	Price: $<input type="number" name="price" value=""><br>
+	Quantity: <input type="number" name="qty" value=""><br>
+	Image Source: <input type="text" name="img" value=""><br>
+	<input type="submit" name="submit" value="Submit"><br>
 
 <?php
 if (file_exists('../inventory/categories'))
@@ -37,14 +31,14 @@ if (file_exists('../inventory/items'))
 	if ($all)
 	{
 		$all = unserialize($all);
-		foreach ($all as $item)
+		foreach ($all[$_GET[cat]] as $name => $item)
 		{
-			if ($item[category] == $_GET[cat])
-			{
-				echo "<img src=".$_item[img];
-				echo "$item[name]";
-				echo "$item[price]";
-			}
+			echo "<img src=".$_item[img];
+			echo "$name";
+			echo "$item[price]";
+			echo '<form method="post" action=edit.php?cat='.$_GET[cat].'>
+				<input type="submit" name="edit" value="edit">
+				<input type="submit" name="delete" value="delete"><br></form>';
 		}
 	}
 }
