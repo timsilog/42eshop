@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="../css/admin.css">
 		<title>ADMIN PAGE</title>
 		<h1>ADMIN PAGE</h1>
 	</head>
@@ -34,6 +35,7 @@ if ($_GET[changedpw])
 if ($_GET[wrongpw])
 	echo "Wrong password for user: $_GET[wrongpw]";
 ?>
+	<div class="box">
 		<h2>Users</h2>
 		<b>Add User:</b>
 		<form method="post" action="../create.php">
@@ -69,6 +71,9 @@ if ($_GET[wrongpw])
 			Username:<input type="text" name="login" value="" />
 			<input type="submit" name="remove" value="Save"/><br>
 		</form>
+	</div>
+	<br>
+	<div class="box">
 		<h2>Categories</h2>
 		<b>Add Category:</b><br>
 		<form method="post" action="new_cat.php">
@@ -79,9 +84,29 @@ if ($_GET[wrongpw])
 		<form method="post" action="remove_cat.php">
 			Category Name:<input type="text" name="category" value="" />
 			<input type="submit" name="submit" value="Save"/><br>
-		</form></br>
+		</form>
+	</div>
+	</br>
+	<div class="box">
 		<h2>Inventory</h2>
-		</php>
+		<h3>Categories:</h3>
+<?php
+	if (file_exists('../inventory/categories'))
+	{
+		if ($all = file_get_contents('../inventory/categories'))
+		{
+			$all = unserialize($all);
+			foreach ($all as $cat)
+			{
+				echo "<a href=display_cat.php?cat=$cat><b>$cat</b></a><br>";
+			}
+		}
+	}
+?>
+	<br>
+	</div>
+
+		<br>
 		<a href="../index.php">Go back home</a><br>
 	</body>
 </html>

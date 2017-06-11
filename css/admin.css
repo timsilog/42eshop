@@ -1,0 +1,10 @@
+body {
+	font-family: Verdana;
+}
+.box {
+	border-style: solid;
+	border-radius: 10px;
+	box-shadow: 5px 5px 13px #111111;
+	padding: 3px;
+	width: 340px;
+}
