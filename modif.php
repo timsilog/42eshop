@@ -24,7 +24,7 @@ if (($_POST[submit] == "OK" || $_POST[submit] == "Save") && $_POST[login] && $_P
 			if ($_POST[submit] == "OK")
 				header('location: change_pw.php?err=wrongpw');
 			else
-				header('location: admin/admin.php?wrongpw='.$_POST[login]);
+				header('location: admin/admin.php?wrongpw='.urlencode($_POST[login]));
 			return ;
 
 		}
@@ -35,15 +35,15 @@ if (($_POST[submit] == "OK" || $_POST[submit] == "Save") && $_POST[login] && $_P
 			if ($_POST[submit] == "OK")
 				header('location: index.php?change=1');
 			else
-				header('location: admin/admin.php?changedpw='.$_POST[login]);
+				header('location: admin/admin.php?changedpw='.urlencode($_POST[login]));
 			return ;
 		}
 	}
 	file_put_contents('./private/passwd', serialize($all));
 	if ($_POST[submit] == "OK")
-		header('location: change_pw.php?no_user='.$_POST[login]);
+		header('location: change_pw.php?no_user='.urlencode($_POST[login]));
 	else
-		header('location: admin/admin.php?no_user='.$_POST[login]);
+		header('location: admin/admin.php?no_user='.urlencode($_POST[login]));
 	return ;
 }
 if ($_POST[submit] == "OK")

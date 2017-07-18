@@ -13,14 +13,14 @@ if ($_POST[submit] == "Save" && $_POST[category])
 				{
 					unset($all[$key]);
 					file_put_contents('../inventory/categories', serialize($all));
-					header('location: admin.php?removed_c='.$_POST[category].'&val=1');
+					header('location: admin.php?removed_c='.urlencode($_POST[category]).'&val=1');
 					return ;
 				}
 			}
 			file_put_contents('../inventory/categories', serialize($all));
 		}
 	}
-	header('location: admin.php?removed_c='.$_POST[category].'&val=0');
+	header('location: admin.php?removed_c='.urlencode($_POST[category]).'&val=0');
 	return ;
 }
 header('location: admin.php');

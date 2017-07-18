@@ -13,15 +13,16 @@ if ($_POST[submit] == "Save" && $_POST[category])
 			{
 				if ($cat == $_POST[category])
 				{
-					header('location: admin.php?added_c='.$_POST[category].'&val=0');
+					header('location: admin.php?added_c='.urlencode($_POST[category]).'&val=0');
 					return ;
 				}
 			}
 		}
 	}
 	$all[] = $_POST[category];
+	natcasesort($all);
 	file_put_contents('../inventory/categories', serialize($all));
-	header('location: admin.php?added_c='.$_POST[category].'&val=1');
+	header('location: admin.php?added_c='.urlencode($_POST[category]).'&val=1');
 	return ;
 }
 header('location: admin.php');

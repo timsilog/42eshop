@@ -26,7 +26,7 @@ if (($_POST[give] || $_POST[remove]) && $_POST[login])
 		}
 	}
 	file_put_contents('../private/passwd', serialize($all));
-	header('location: admin.php?admin='.$gave.'&user='.$_POST[login]);
+	header('location: admin.php?admin='.$gave.'&user='.urlencode($_POST[login]));
 	return ;
 }
 header('location: admin.php');

@@ -12,7 +12,7 @@ if ($_POST[submit] == "Save" && $_POST[old_u] && $_POST[new_u])
 		if ($user[login] == $_POST[new_u])
 		{
 			file_put_contents('../private/passwd', serialize($all));
-			header('location: admin.php?user_exists='.$_POST[new_u]);
+			header('location: admin.php?user_exists='.urlencode($_POST[new_u]));
 			return ;
 		}
 	}
@@ -23,11 +23,11 @@ if ($_POST[submit] == "Save" && $_POST[old_u] && $_POST[new_u])
 			$user[login] = $_POST[new_u];
 			$all[] = $account;
 			file_put_contents('../private/passwd', serialize($all));
-			header('location: admin.php?old_u='.$_POST[old_u].'&new_u='.$_POST[new_u]);
+			header('location: admin.php?old_u='.urlencode($_POST[old_u]).'&new_u='.urlencode($_POST[new_u]));
 			return ;
 		}
 	}
-	header('location: admin.php?no_user='.$_POST[old_u]);
+	header('location: admin.php?no_user='.urlencode($_POST[old_u]));
 	return ;
 }
 header('location: admin.php');

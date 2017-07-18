@@ -22,7 +22,7 @@ if (($_POST[submit] == "Submit" || $_POST[submit] == "Save") && $_POST[login] &&
 					}
 					else
 					{
-						header('location: admin/admin.php?user_exists='.$_POST[login]);
+						header('location: admin/admin.php?user_exists='.urlencode($_POST[login]));
 						return ;
 					}
 				}
@@ -32,9 +32,9 @@ if (($_POST[submit] == "Submit" || $_POST[submit] == "Save") && $_POST[login] &&
 	$all[] = $account;
 	file_put_contents('./private/passwd', serialize($all));
 	if ($_POST[submit] == "Submit")
-		header('location: new_account.php?create=1&user='.$_POST[login]);
+		header('location: new_account.php?create=1&user='.urlencode($_POST[login]));
 	else
-		header('location: admin/admin.php?create=1&user='.$_POST[login]);
+		header('location: admin/admin.php?create=1&user='.urlencode($_POST[login]));
 	return ;
 }
 else if (($_POST[submit] == "Submit" || $_POST[submit] == "Save") && (!$_POST[login] || !$_POST[passwd]))
